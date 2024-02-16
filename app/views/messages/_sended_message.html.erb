@@ -1,0 +1,18 @@
+
+<div class="msg right-msg">
+  <div
+    class="msg-img"
+    style="background-image: url(https://image.flaticon.com/icons/svg/145/145867.svg)"
+  ></div>
+
+  <div class="msg-bubble">
+    <div class="msg-info">
+      <div class="msg-info-name"><%= message.user&.email %></div>
+      <div class="msg-info-time"><%= message.created_at.strftime("%-m/%-d/%y") %></div>
+    </div>
+
+    <div class="msg-text">
+      <%= message.context %>
+    </div>
+  </div>
+</div>

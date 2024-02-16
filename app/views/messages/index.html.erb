@@ -1,9 +1,52 @@
-<h1>Messages</h1>
-<p>...............</p>
-<div id="messageContainer">
-  <% @messages.each do |message| %>
-    <p><b><%= message.user&.email %></b></p>
-    <p><%= message.context %></p>
-    .............................
+<!--<h1>Messages</h1>-->
+<!--<p>...............</p>-->
+<!--<div id="messageContainer">-->
+<%# @messages.each do |message| %>
+<!--    <p><b><%#= message.user&.email %></b></p>-->
+<!--    <p><%#= message.context %></p>-->
+<!--    .............................-->
+<%# end %>
+<!--</div>-->
+
+
+<section class="msger">
+  <header class="msger-header">
+    <div class="msger-header-title">
+      <i class="fas fa-comment-alt"></i> Chat Room
+    </div>
+    <div class="msger-header-options">
+      <span><i class="fas fa-cog"></i></span>
+    </div>
+  </header>
+
+  <main class="msger-chat">
+    <% @messages.each do |message| %>
+      <% if message.user == current_user %>
+        <%= render 'sended_message', message: message %>
+      <% else %>
+        <%= render 'received_message', message: message %>
+      <% end %>
+    <% end %>
+  </main>
+
+  <%= form_with model: @message, url: messages_path do |f| %>
+    <div class="msger-inputarea">
+      <%= f.text_field :context, class: 'msger-input', placeholder: 'Enter your message...' %>
+      <button type="submit" class="msger-send-btn">Send</button>
+    </div>
   <% end %>
-</div>
+</section>
+
+<script>
+    document.addEventListener("turbolinks:load", function() {
+        function scrollToBottom() {
+            var container = document.querySelector('.msger-chat');
+            container.scrollTop = container.scrollHeight;
+        }
+
+        // Scroll to bottom when page loads
+        window.onload = function() {
+            scrollToBottom();
+        };
+    })
+</script>
