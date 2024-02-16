@@ -1,8 +1,9 @@
 <h1>Messages</h1>
 <p>...............</p>
-
-<% @messages.each do |message| %>
-  <p><b><%= message.user&.email %></b></p>
-  <p><%= message.context %></p>
-  .............................
-<% end %>
+<div id="messageContainer">
+  <% @messages.each do |message| %>
+    <p><b><%= message.user&.email %></b></p>
+    <p><%= message.context %></p>
+    .............................
+  <% end %>
+</div>
